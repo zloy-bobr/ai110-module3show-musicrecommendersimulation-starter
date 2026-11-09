@@ -21,16 +21,17 @@ Prompts:
 
 ## 3. How the Model Works  
 
-Explain your scoring approach in simple language.  
+Think of the recommender as a judge holding a scorecard. You tell it what you like: a favorite genre, a favorite mood, how energetic you want the music to be, whether you like acoustic or more electronic, produced sounds, and (optionally) how upbeat or positive you want songs to feel. The judge then goes through every song in the catalog one at a time and gives it points.
 
-Prompts:  
+- **Genre is worth the most.** A song in your exact genre gets 2 points. A closely related genre (like "indie pop" when you said "pop") gets 1 point.
+- **Mood is worth 1 point** if it matches exactly. It counts less than genre because mood changes from moment to moment, while genre is a steadier part of someone's taste.
+- **Energy is about closeness, not loudness.** A song whose energy is right at your target gets the full 1.5 points, and it gets fewer the further away it is. Someone who wants calm music isn't pushed toward the loudest tracks.
+- **Acoustic preference adds up to half a point**, in favor of either acoustic or produced sound, depending on what you said you like.
+- **Positivity adds up to 1 point** for songs that feel as upbeat (or as gloomy) as you asked for. This helps tell apart songs that are equally energetic but feel very different, like a euphoric dance track and an angry metal song.
 
-- What features of each song are used (genre, energy, mood, etc.)  
-- What user preferences are considered  
-- How does the model turn those into a score  
-- What changes did you make from the starter logic  
+Once every song has a score, the judge sorts them from highest to lowest and shows you the top five. If two songs tie, they are ordered alphabetically by title. Every recommendation comes with its scorecard, a list of exactly which rules earned points and how many, so you can always see *why* a song was picked.
 
-Avoid code here. Pretend you are explaining the idea to a friend who does not program.
+**Changes from the starter logic:** the starter returned the first few songs in the file with a placeholder explanation. I replaced it with the point system above, added partial credit for related genres, added the optional positivity preference, and made every recommendation list the reasons behind its score.
 
 ---
 
